@@ -168,13 +168,14 @@
   /* печать: всегда один горизонтальный лист A4 с ПК-версией сертификата */
   @page{size:A4 landscape;margin:0}
   @media print{
-    html,body{width:297mm;height:210mm;margin:0;padding:0;background:#fff;overflow:hidden}
+    /* 100vw/100vh в печати = область листа, поэтому влезает в один лист при любых полях */
+    html,body{width:100%;height:100vh;margin:0;padding:0;background:#fff;overflow:hidden}
     .hint,.actions,.layer,.flap,.seal,#confetti{display:none !important}
-    .stage{position:static;inset:auto;padding:0;display:block;width:297mm;height:210mm;overflow:hidden}
-    .env{position:static;width:297mm !important;height:210mm;aspect-ratio:auto !important;filter:none}
-    .cert{position:static;width:297mm !important;height:210mm;aspect-ratio:auto !important;
+    .stage{position:static;inset:auto;padding:0;display:block;width:100%;height:100vh;overflow:hidden}
+    .env{position:static;width:100% !important;height:100vh;aspect-ratio:auto !important;filter:none}
+    .cert{position:static;width:100% !important;height:100vh;aspect-ratio:auto !important;
           opacity:1 !important;transform:none !important;box-shadow:none;border-radius:0 !important;
-          page-break-inside:avoid;break-inside:avoid}
+          background:none;break-inside:avoid;page-break-inside:avoid}
     .cert-pc{display:block !important;width:100%;height:100%;object-fit:contain}
     .cert-mob{display:none !important}
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}

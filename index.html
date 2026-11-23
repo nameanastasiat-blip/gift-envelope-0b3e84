@@ -165,14 +165,18 @@
   }
 
   /* ---------- печать ---------- */
-  @page{size:A5 landscape;margin:0}
+  /* печать: всегда один горизонтальный лист A4 с ПК-версией сертификата */
+  @page{size:A4 landscape;margin:0}
   @media print{
-    body{background:#fff;overflow:visible}
-    .hint,.actions,.layer,.flap,.seal{display:none !important}
-    .stage{position:static;padding:0;display:block}
-    .env{width:100%;filter:none;aspect-ratio:auto}
-    #confetti{display:none}
-    .cert{position:static;width:100%;opacity:1;transform:none !important;box-shadow:none;border-radius:0}
+    html,body{width:297mm;height:210mm;margin:0;padding:0;background:#fff;overflow:hidden}
+    .hint,.actions,.layer,.flap,.seal,#confetti{display:none !important}
+    .stage{position:static;inset:auto;padding:0;display:block;width:297mm;height:210mm;overflow:hidden}
+    .env{position:static;width:297mm !important;height:210mm;aspect-ratio:auto !important;filter:none}
+    .cert{position:static;width:297mm !important;height:210mm;aspect-ratio:auto !important;
+          opacity:1 !important;transform:none !important;box-shadow:none;border-radius:0 !important;
+          page-break-inside:avoid;break-inside:avoid}
+    .cert-pc{display:block !important;width:100%;height:100%;object-fit:contain}
+    .cert-mob{display:none !important}
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
 </style>
